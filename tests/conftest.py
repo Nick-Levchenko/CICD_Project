@@ -71,6 +71,7 @@ def auth_service_readiness():
     timeout = 180
     start_time = time.time()
     while time.time() < start_time + timeout:
+        # noinspection PyBroadException
         try:
             response = requests.get(AuthService.SERVICE_URL + "/docs")
             response.raise_for_status()
@@ -79,4 +80,4 @@ def auth_service_readiness():
         else:
             break
     else:
-        raise RuntimeError(f"Timeout while waiting for auth service to start.")
+        raise RuntimeError("Timeout while waiting for auth service to start.")

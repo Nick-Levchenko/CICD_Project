@@ -6,4 +6,4 @@ class RegisterRequest(BaseModel):
     username: str
     password: str
     password_repeat: str
-    email: EmailStr
+    email: str
