@@ -1,5 +1,3 @@
-from pprint import pprint
-
 from services.general.base_service import BaseService
 from services.university.helpers.group_helper import GroupHelper
 from services.university.helpers.student_helper import StudentHelper
