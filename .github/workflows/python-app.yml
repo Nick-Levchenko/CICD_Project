@@ -25,8 +25,7 @@ jobs:
         with:
           version: "latest"
       - name: Run Docker Compose
-        run: |
-          docker run --network host 127.0.0.1:8000
+        run: 
           docker compose up
       - name: Test with pytest
         run: |
