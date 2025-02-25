@@ -36,6 +36,9 @@ jobs:
           pip install -r requirments.txt
       - name: Run Docker Compose
         run: docker compose up
+  tests_run:
+    runs-on: ubuntu-latest
+    steps:
       - name: Pull Docker rep
         run: docker pull niklevchenko/api-tests:v1
       - name: Run test
