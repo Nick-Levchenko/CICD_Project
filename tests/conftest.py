@@ -1,4 +1,7 @@
+import time
+
 import pytest
+import requests
 from faker import Faker
 
 from services.auth.auth_service import AuthService
@@ -61,3 +64,20 @@ def auth_api_utils_admin(access_token):
 def university_api_utils_admin(access_token):
     api_utils = ApiUtils(url=UniversityService.SERVICE_URL, headers={"Authorization": f"Bearer {access_token}"})
     return api_utils
+
+
+@pytest.fixture(scope="session", autouse=True)
+def auth_service_readiness():
+    timeout = 180
+    start_time = time.time()
+    while time.time() < start_time + timeout:
+        try:
+            response = requests.get(AuthService.SERVICE_URL + "/docs")
+            response.raise_for_status()
+        except Exception as e:
+            time.sleep(1)
+            print(f'error: {e}')
+        else:
+            break
+    else:
+        raise RuntimeError("Timeout while waiting for auth service to start.")
