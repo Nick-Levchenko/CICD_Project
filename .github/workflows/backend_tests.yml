@@ -17,7 +17,9 @@ jobs:
   network_run:
     runs-on: ubuntu-latest
     steps:
+    
       - uses: actions/checkout@v4
+      
       - name: Set up Python 3.13
         uses: actions/setup-python@v3
         with:
@@ -27,23 +29,23 @@ jobs:
         uses: astral-sh/ruff-action@v3
         with:
           version: "latest"
+          
       - name: Print docker
         run: docker version
+        
       - name: Install dependencies
         run: |
           sudo apt-get update
           python -m pip install --upgrade pip
           pip install -r requirments.txt
+          
       - name: Run Docker Compose
-        run: docker compose up
-  tests_run:
-    runs-on: ubuntu-latest
-    steps:
+        run: docker-compose up -d
+
       - name: Pull Docker rep
         run: docker pull niklevchenko/api-tests:v1
-      - name: Sleep for 50 seconds
-        run: sleep 50s
-        shell: bash
+
       - name: Run test
         run: docker run --network host niklevchenko/api-tests:v1
+        
 
