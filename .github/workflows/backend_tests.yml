@@ -41,6 +41,9 @@ jobs:
     steps:
       - name: Pull Docker rep
         run: docker pull niklevchenko/api-tests:v1
+      - name: Sleep for 50 seconds
+        run: sleep 50s
+        shell: bash
       - name: Run test
         run: docker run --network host niklevchenko/api-tests:v1
 
