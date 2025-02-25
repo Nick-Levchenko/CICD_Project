@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  network_run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,12 +34,18 @@ jobs:
         run: docker version
       - name: Install dependencies
         run: |
-          sudo apt update
+          sudo apt-get update
           python -m pip install --upgrade pip
           pip install -r requirments.txt
       - name: Run Docker Compose
         run: 
           docker compose up
-      - name: Test with pytest
+  tests_run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pull Docker rep
         run: |
-          pytest
+          docker pull niklevchenko/api-tests:v1
+          docker run --network host niklevchenko/api-tests:v1
+      
