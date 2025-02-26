@@ -1,6 +1,6 @@
 name: Python application
 
-on: workflow_dispatch
+on: pull_request
 env:
   POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
   POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
