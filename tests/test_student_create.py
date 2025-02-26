@@ -2,6 +2,7 @@ import random
 
 from faker import Faker
 
+from services.university.helpers.student_helper import StudentHelper
 from services.university.models.base_student import DegreeEnum
 from services.university.models.group_request import GroupRequest
 from services.university.models.student_request import StudentRequest
@@ -25,3 +26,8 @@ class TestStudent:
         )
         student_response = university_service.create_student(student_request=student)
         assert student_response.group_id == group_response.id, f"Wrong group id. Actual: {student_response.group_id}, expected: {group_response.id}"
+
+    def test_get_student_by_id(self, university_api_utils_admin):
+        student_helper = StudentHelper(university_api_utils_admin)
+        response = student_helper.get_student_by_id()
+        print(response.json())

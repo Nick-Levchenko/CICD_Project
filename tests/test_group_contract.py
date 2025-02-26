@@ -14,3 +14,8 @@ class TestGroupContract:
         assert response.status_code == requests.status_codes.codes.created, \
             (f"Wrong status code: {response.status_code},"
              f" expected {requests.status_codes.codes.unauthorized}")
+
+    def test_get_group_by_id(self, university_api_utils_admin):
+        group_helper = GroupHelper(university_api_utils_admin)
+        response = group_helper.get_group_by_id()
+        print(response.json())
