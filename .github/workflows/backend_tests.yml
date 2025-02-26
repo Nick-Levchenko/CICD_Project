@@ -46,6 +46,6 @@ jobs:
         run: docker pull niklevchenko/api-tests:latest
 
       - name: Run test
-        run: docker run --network host niklevchenko/api-tests:latest --alluredir=allure-results
+        run: docker run --network host niklevchenko/api-tests:latest
         
 
