@@ -1,5 +1,6 @@
 import random
 
+import requests
 from faker import Faker
 
 from services.university.helpers.student_helper import StudentHelper
@@ -30,4 +31,5 @@ class TestStudent:
     def test_get_student_by_id(self, university_api_utils_admin):
         student_helper = StudentHelper(university_api_utils_admin)
         response = student_helper.get_student_by_id()
-        assert response.status_code == 200
+        assert response.status_code == requests.status_codes.codes.ok, (
+            f"Wrong status code: {response.status_code}, expected {requests.status_codes.codes.ok}")
