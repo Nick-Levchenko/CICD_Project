@@ -30,4 +30,4 @@ class TestStudent:
     def test_get_student_by_id(self, university_api_utils_admin):
         student_helper = StudentHelper(university_api_utils_admin)
         response = student_helper.get_student_by_id()
-        print(response.json())
+        assert response.status_code == 200

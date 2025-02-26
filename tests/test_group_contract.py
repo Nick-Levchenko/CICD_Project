@@ -18,4 +18,4 @@ class TestGroupContract:
     def test_get_group_by_id(self, university_api_utils_admin):
         group_helper = GroupHelper(university_api_utils_admin)
         response = group_helper.get_group_by_id()
-        print(response.json())
+        assert response.status_code == 200
