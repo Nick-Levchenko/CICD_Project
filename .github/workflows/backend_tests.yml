@@ -41,6 +41,7 @@ jobs:
 
       - name: Pull Docker rep
         run: docker pull niklevchenko/api-tests:latest
+        
       - name: Run test
         run: docker run --network host niklevchenko/api-tests:latest
 
