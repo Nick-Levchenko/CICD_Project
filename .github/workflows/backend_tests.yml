@@ -10,8 +10,11 @@ env:
   AUTH_SERVICE_API_URL: ${{ secrets.AUTH_SERVICE_API_URL }}
   UNIVERSITY_SERVICE_INTERNAL_URL: ${{ secrets.UNIVERSITY_SERVICE_INTERNAL_URL }}
   UNIVERSITY_SERVICE_API_URL: ${{ secrets.UNIVERSITY_SERVICE_API_URL }}
+
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
 jobs:
   network_run:
