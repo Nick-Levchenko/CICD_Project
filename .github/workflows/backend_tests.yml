@@ -47,6 +47,6 @@ jobs:
       - name: Run test
         run: |
           docker run --network host niklevchenko/api-tests:latest
-          allure serve allure_results\
+          
         
 
