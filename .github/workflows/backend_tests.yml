@@ -42,7 +42,6 @@ jobs:
           tar -zxvf allure-2.32.2.tgz -C /opt/
           ln -s /opt/allure-2.32.2/bin/allure . && \
           rm allure-2.32.2.tgz
-          allure --version
           pip install -r requirments.txt
           
       - name: Run Docker Compose
