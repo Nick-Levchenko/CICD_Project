@@ -46,7 +46,7 @@ jobs:
         run: docker pull niklevchenko/api-tests:v1
       - name: Run test
         run: |
-          docker run -v /home/runner/work/CICD_Project/CICD_Project:/app/allure_results --network host niklevchenko/api-tests:v1
+          docker run -v my_vol:/app/allure_results --network host niklevchenko/api-tests:v1
       - name: get dir
         run: |
           pwd
