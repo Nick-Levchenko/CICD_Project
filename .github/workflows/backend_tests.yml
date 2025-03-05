@@ -49,7 +49,7 @@ jobs:
           mkdir my_vol
           cd my_vol
           pwd
-          docker run --mount type=bind,source=/my_vol,target=/app/allure_results --network host niklevchenko/api-tests:v1
+          docker run --mount type=bind,source=/home/runner/work/CICD_Project/CICD_Project/my_vol,target=/app/allure_results --network host niklevchenko/api-tests:v1
       - name: get dir
         run: |
           ls
