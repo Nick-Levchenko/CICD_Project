@@ -51,5 +51,6 @@ jobs:
       - name: get dir
         run: |
           cd my_vol
+          mkdir my_dir
           ls
 
