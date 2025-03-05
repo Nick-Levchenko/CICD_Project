@@ -47,7 +47,7 @@ jobs:
       - name: Run test
         run: |
           mkdir my_vol
-          docker run --mount source=my_vol, target=/app/allure_results --network host niklevchenko/api-tests:v1
+          docker run -v /my_vol:/app/allure_results --network host niklevchenko/api-tests:v1
       - name: get dir
         run: |
           pwd
