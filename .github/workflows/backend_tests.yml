@@ -47,7 +47,7 @@ jobs:
       - name: Run test
         run: |
           mkdir my_vol
-          docker run -v my_vol:/app/allure_results  --network host niklevchenko/api-tests:v2
+          docker run -v my_vol:/app/allure_results --alluredir=allure_result --network host niklevchenko/api-tests:v2
       - name: get dir
         run: |
           cd my_vol
