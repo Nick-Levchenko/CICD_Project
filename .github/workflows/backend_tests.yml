@@ -49,6 +49,6 @@ jobs:
           docker run -v my_dir:/home/runner/work/CICD_Project/CICD_Project/allure_results --network host niklevchenko/api-tests:v1
       - name: get dir
         run: |
-          ls
+          pwd
           docker volume ls
 
