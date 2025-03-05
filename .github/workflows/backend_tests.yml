@@ -43,11 +43,13 @@ jobs:
         run: docker compose up -d
 
       - name: Pull Docker rep
-        run: docker pull niklevchenko/api-tests:v5
+        run: docker pull niklevchenko/api-tests:v1
       - name: Run test
         run: |
-          docker run --network host niklevchenko/api-tests:v5
+          docker run --network host niklevchenko/api-tests:v1
           pwd
+          ls
+          cd allure_results
           ls
         
 
