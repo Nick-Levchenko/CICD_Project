@@ -46,10 +46,5 @@ jobs:
         run: docker pull niklevchenko/api-tests:v1
       - name: Run test
         run: |
-          docker run --network host niklevchenko/api-tests:v1
-          pwd
-          ls
-          cd allure_results
-          ls
-        
+          docker run --network host niklevchenko/api-tests:v1 --volume allure_results:site_
 
