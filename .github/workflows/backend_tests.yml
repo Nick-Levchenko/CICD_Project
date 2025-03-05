@@ -43,10 +43,10 @@ jobs:
         run: docker compose up -d
 
       - name: Pull Docker rep
-        run: docker pull niklevchenko/api-tests:v1
+        run: docker pull niklevchenko/api-tests:v2
       - name: Run test
         run: |
-          docker run --network host niklevchenko/api-tests:v1
+          docker run --network host niklevchenko/api-tests:v2
           pwd
           ls
         
