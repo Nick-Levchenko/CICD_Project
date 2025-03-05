@@ -50,7 +50,6 @@ jobs:
           docker run -v /my_vol:/app/allure_results --network host niklevchenko/api-tests:v1
       - name: get dir
         run: |
-          pwd
+          cd my_vol
           ls
-          docker volume ls
 
