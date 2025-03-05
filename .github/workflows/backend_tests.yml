@@ -46,9 +46,11 @@ jobs:
         run: docker pull niklevchenko/api-tests:v1
       - name: Run test
         run: |
-          docker run -v /my_vol:/app/allure_results --network host niklevchenko/api-tests:v1
+          mkdir my_vol
+          docker run --mount type=bind, source=/my_vol, target=/app/allure_results --network host niklevchenko/api-tests:v1
       - name: get dir
         run: |
+          ls
           cd my_vol
           ls
 
