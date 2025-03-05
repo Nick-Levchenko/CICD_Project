@@ -37,21 +37,16 @@ jobs:
         run: |
           sudo apt-get update
           python -m pip install --upgrade pip
-          sudo apt-get install default-jdk -y
-          curl -o allure-2.32.2.tgz -Ls https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.32.2/allure-commandline-2.32.2.tgz
-          tar -zxvf allure-2.32.2.tgz -C /opt/
-          ln -s /opt/allure-2.32.2/bin/allure . && \
-          rm allure-2.32.2.tgz
           pip install -r requirments.txt
           
       - name: Run Docker Compose
         run: docker compose up -d
 
       - name: Pull Docker rep
-        run: docker pull niklevchenko/api-tests:v13
+        run: docker pull niklevchenko/api-tests:v1
       - name: Run test
         run: |
-          docker run --network host niklevchenko/api-tests:v13
+          docker run --network host niklevchenko/api-tests:v1
           pwd
           ls
         
