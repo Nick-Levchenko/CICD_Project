@@ -47,6 +47,8 @@ jobs:
       - name: Run test
         run: |
           mkdir my_vol
+          cd my_vol
+          pwd
           docker run --mount type=bind,source=/my_vol,target=/app/allure_results --network host niklevchenko/api-tests:v1
       - name: get dir
         run: |
