@@ -80,14 +80,14 @@ jobs:
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v4        
         
-      - run: allure generate -c allure-result -o allure_report
+      - run: allure generate -c allure-result -o allure_dir
       
       - name: Store generated report
         uses: actions/upload-artifact@v4
         with:
-          name: allure_report
+          name: allure_dir
           path:
-            allure_report
+            allure_dir
           retention-days: 1
           
   publish-report:
