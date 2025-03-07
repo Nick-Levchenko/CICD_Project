@@ -17,7 +17,7 @@ permissions:
   id-token: write
 
 jobs:
-  network_run:
+  run_tests:
     runs-on: ubuntu-latest
     steps:
     
@@ -44,14 +44,51 @@ jobs:
 
       - name: Pull Docker rep
         run: docker pull niklevchenko/api-tests:v2
+        
       - name: Run test
-        run: |
-          mkdir my_vol
-          docker run -v ./my_vol:/app/allure_result --network host niklevchenko/api-tests:v2
-      - name: get dir
-        run: |
-          ls
-          cd my_vol
-          mkdir my_dir
-          ls
+        run: docker run -v ./allure_report:/app/allure_result --network host niklevchenko/api-tests:v2
+          
+      - name: Save allure result
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-result
+          path: 
+            allure_report
+          retention-days: 1
 
+  get_allure_report:
+    runs-on: ubuntu-latest
+    needs: run_tests
+    steps:
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - run: |
+          curl -o allure-2.32.2.tgz -Ls https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.32.2/allure-commandline-2.32.2.tgz && \
+          tar -zxvf allure-2.32.2.tgz -C /opt/ && \
+          ln -s /opt/allure-2.32.2/bin/allure /usr/bin/allure && \
+          rm allure-2.32.2.tgz
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v4
+      - run: allure generate -c allure-result -om _site
+      - name: Store generated report
+        uses: actions/upload-artifact@v3
+        with:
+          name: _site
+          path:
+            _site
+          retention-days: 1
+  publish-report:
+    runs-on: ubuntu-latest
+    needs: get_allure_report
+    name: Report publication
+    steps:
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v3
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v2
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1.2.9
+      
