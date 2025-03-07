@@ -85,7 +85,7 @@ jobs:
       - name: Store generated report
         uses: actions/upload-artifact@v4
         with:
-          name: allure_dir
+          name: _site
           path:
             allure_dir
           retention-days: 1
