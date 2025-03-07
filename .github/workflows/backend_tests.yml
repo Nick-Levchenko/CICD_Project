@@ -67,7 +67,7 @@ jobs:
       - run: |
           curl -o allure-2.32.2.tgz -Ls https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.32.2/allure-commandline-2.32.2.tgz && \
           tar -zxvf allure-2.32.2.tgz -C /opt/ && \
-          ln -s /opt/allure-2.32.2/bin/allure /usr/bin/allure && \
+          sudo ln -s /opt/allure-2.32.2/bin/allure /usr/bin/allure && \
           rm allure-2.32.2.tgz
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v4
